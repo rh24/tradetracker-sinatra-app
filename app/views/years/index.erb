@@ -1,1 +1,6 @@
 list all years
+
+<% Trade.create_years %>
+<% Year.all.each do |y| %>
+  <ul><a href='/years/<%=y%>'><%= y.year %></a></ul>
+<% end %>

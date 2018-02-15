@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215195832) do
+ActiveRecord::Schema.define(version: 20180215204055) do
 
   create_table "trades", force: :cascade do |t|
     t.boolean "private", default: false
-    t.string "coin_symbol"
+    t.string "coin"
     t.integer "buy_value_fiat"
     t.integer "sell_value_fiat"
-    t.integer "year_created"
+    t.string "date"
     t.integer "user_id"
+    t.text "note"
   end
 
   create_table "user_years", force: :cascade do |t|
