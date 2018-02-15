@@ -35,10 +35,14 @@ class UsersController < ApplicationController
     user = User.find_by(username: params[:username])
     if !!user
       session[:user_id] = user.id
-      binding.pry
       redirect to '/trades'
     else
       redirect to '/login'
     end
+  end
+
+  get '/logout' do
+    session.clear if logged_in?
+    redirect to '/login'
   end
 end
