@@ -8,13 +8,13 @@ Database
     t.string :password_digest
   end
 
- <!-- - rake db:create_migration NAME=create_coins
-   create_table :coins do |t|
-     t.string :coin_name
-     t.string :coin_symbol
-     t.integer :current_fiat_value
-     t.ingeter :current_satoshi_value
-   end -->
+<!-- - rake db:create_migration NAME=create_portfolios
+  create_table :portfolios do |t|
+    t.string :portfolio_name
+    t.integer :user_id
+  end
+
+  create another table when you feel comfortable getting the first level deep working -->
 
 - rake db:create_migration NAME=create_trades
   create_table :trades do |t|
