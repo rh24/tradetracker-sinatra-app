@@ -10,6 +10,16 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    'Hello World'
+    erb :homepage
+  end
+
+  helpers do
+    def logged_in?
+      !!current_user
+    end
+
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
   end
 end

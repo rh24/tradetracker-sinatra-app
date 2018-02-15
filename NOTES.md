@@ -23,6 +23,7 @@ Database
     t.integer :buy_value_satoshi
     t.integer :sell_value_fiat
     t.integer :sell_value_satoshi
+    t.integer :user_id
   end
 
 - rake db:create_migration NAME=create_calendar_years
@@ -31,7 +32,8 @@ Database
   end
 
 Models
-- User has many trades
+- User has many trades, has many years
+- Year has many users
 - Trades belong to a user
 
 Views
@@ -50,9 +52,6 @@ Views
 
 Controller
 - ApplicationController
-  configure do
-
-  end
   helpers do
 
   end
