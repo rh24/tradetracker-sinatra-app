@@ -1,6 +1,8 @@
 class TradesController < ApplicationController
 
   get '/trades' do
+    @user = current_user
+    binding.pry
     if logged_in?
       erb :'/trades/index'
     else
