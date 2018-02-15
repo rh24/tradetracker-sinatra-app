@@ -4,13 +4,11 @@ class CreateTrades < ActiveRecord::Migration[5.1]
       t.boolean :private, default: false
       t.string :coin_symbol
       t.integer :buy_value_fiat
-      t.integer :buy_value_satoshi
       t.integer :sell_value_fiat
-      t.integer :sell_value_satoshi
-      t.integer :net_profitloss_fiat
-      t.integer :net_profitloss_satoshi
+      t.integer :year_created
+      # t.integer :buy_value_satoshi
+      # t.integer :sell_value_satoshi
       t.integer :user_id
-      t.integer :year_id
     end
   end
 end
