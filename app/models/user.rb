@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  validates_presence_of :username, :email, :password
   has_many :trades
   has_many :user_years
   has_many :years, through: :user_years

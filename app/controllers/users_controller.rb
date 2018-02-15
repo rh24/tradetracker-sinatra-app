@@ -4,12 +4,22 @@ class UsersController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
   end
-  
+
   get '/signup' do
     if !logged_in?
       erb :signup
     else
       redirect to '/trades'
+    end
+  end
+
+  post '/signup' do
+    user = User.create(params)
+    session[:user_id] = user.id
+    if user.save
+      redirect to '/trades'
+    else
+      redirect to '/signup'
     end
   end
 end
