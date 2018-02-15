@@ -35,7 +35,18 @@ Models
 - Trades belong to a user
 
 Views
--
+- mkdir trades
+  - edit.erb
+  - index.erb # publicly viewable trades, users you follow, etc.
+  - new.erb
+  - show.erb
+- mkdir users
+  - show.erb
+  - edit.erb # allow users to edit their information?
+- homepage.erb
+- login.erb
+- logout.erb
+- signup.erb
 
 Controller
 - ApplicationController
