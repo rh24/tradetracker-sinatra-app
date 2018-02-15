@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215190407) do
+ActiveRecord::Schema.define(version: 20180215195832) do
 
   create_table "trades", force: :cascade do |t|
     t.boolean "private", default: false
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20180215190407) do
     t.integer "net_profitloss_fiat"
     t.integer "net_profitloss_satoshi"
     t.integer "user_id"
+    t.integer "year_id"
+  end
+
+  create_table "user_years", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "year_id"
   end
 
   create_table "users", force: :cascade do |t|

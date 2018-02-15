@@ -24,6 +24,7 @@ Database
     t.integer :sell_value_fiat
     t.integer :sell_value_satoshi
     t.integer :user_id
+    t.integer :year_id
   end
 
 - rake db:create_migration NAME=create_calendar_years
@@ -32,10 +33,11 @@ Database
   end
 
 Models
-- User has many trades, has many years
-- Year has many users
-- Trades belong to a user
-
+- Trades belong to a user, belong to a year
+- User has many trades, has many years through trades
+- Year has many users, users have many years (many-to-many relationship)
+  (is this many-to-many relationship even necessary? get help.)
+  
 Views
 - mkdir trades
   - edit.erb
