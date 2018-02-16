@@ -11,11 +11,11 @@ class TradesController < ApplicationController
   end
 
   post '/trades' do
-    @trades = Trade.all
+    @trades = Trade.where(user_id: current_user.id)
     trade = Trade.create(params)
     trade.user_id = session[:user_id]
     trade.save
-    if trade.viewable = true
+    if trade.viewable == true
       redirect to '/trades'
     else
       erb :'/users/private_show'
