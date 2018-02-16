@@ -1,3 +1,8 @@
-<form action="index.html" method="post">
+<h1>Cryptocurrency Trades</h1>
 
+<form action="/trades" method="POST">
+  <label>Name/Symbol: </label><input type="text" name="coin">
+  <label>Buy Value (Fiat): </label><input type="text" name="buy_value_fiat">
+  <label>Sell Value (Fiat): </label><input type="text" name="sell_value_fiat">
+  <input type="submit" value="Log Trade">
 </form>
