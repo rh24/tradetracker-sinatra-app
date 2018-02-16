@@ -11,8 +11,15 @@ class TradesController < ApplicationController
   end
 
   post '/trades' do
-    @trade = Trade.create(params)
-    redirect to '/trades'
+    @trades = Trade.all
+    trade = Trade.create(params)
+    trade.user_id = session[:user_id]
+    trade.save
+    if trade.viewable = true
+      redirect to '/trades'
+    else
+      erb :'/users/private_show'
+    end
   end
 
   get '/trades/new' do

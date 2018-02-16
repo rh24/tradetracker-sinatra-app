@@ -1,11 +1,16 @@
 <!-- list all trades that are publicly viewable
 list all trades that are viewable to you (after a follow request) -->
-<h1>My Trades</h1>
+<h1>View All Public Trades</h1>
+
 <% @trades.each do |t| %>
-<li>
+  <% if t.viewable == true %>
+<ol><li>
   <label>Name/Symbol: </label><%= t.coin %><br>
-  &emsp;<label>Buy Value (Fiat): </label><%= t.buy_value_fiat %><br>
-  &emsp;<label>Sell Value (Fiat): </label><%= t.sell_value_fiat %><br>
-  &emsp;<label>Net Profit/Loss: </label><%= (t.sell_value_fiat - t.buy_value_fiat) %>
+  <label>Quantity: </label><%= t.quantity %><br>
+  <label>Buy Value (Fiat): </label><%= t.buy_value_fiat %><br>
+  <label>Sell Value (Fiat): </label><%= t.sell_value_fiat %><br>
+  <label>Net Profit/Loss: </label><%= (t.sell_value_fiat - t.buy_value_fiat) * t.quantity %>
 </li><br>
+</ol>
+  <% end %>
 <% end %>

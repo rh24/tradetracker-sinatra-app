@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 
   get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    @trades = Trade.where(user_id: @user.id)
     if logged_in?
-      @user = User.find_by_slug(params[:slug])
       erb :'/users/show'
     else
       redirect '/login'

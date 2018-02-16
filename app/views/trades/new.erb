@@ -2,7 +2,11 @@
 
 <form action="/trades" method="POST">
   <label>Name/Symbol: </label><input type="text" name="coin">
+  <label>Quantity: </label><input type="text" name="quantity">
   <label>Buy Value (Fiat): </label><input type="text" name="buy_value_fiat">
   <label>Sell Value (Fiat): </label><input type="text" name="sell_value_fiat">
+  <label>Private Log: </label>
+  <label>true</label><input type="radio" name="viewable" value="true">
+  <label>false</label><input type="radio" name="viewable" value="false">
   <input type="submit" value="Log Trade">
 </form>

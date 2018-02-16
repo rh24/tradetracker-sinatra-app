@@ -1,15 +1,5 @@
-display individual user info
-
-User Profile
-
-Total trades:
-Years traded:
-
-<h1><%= @user.username %>'s Public Profile</h1>
-
-<h2>Trades</h2>
+<h1>My Trades</h1>
 <% @trades.each do |t| %>
-  <% if t.viewable == true %>
 <ol><li>
   <label>Name/Symbol: </label><%= t.coin %><br>
   <label>Quantity: </label><%= t.quantity %><br>
@@ -18,5 +8,4 @@ Years traded:
   <label>Net Profit/Loss: </label><%= (t.sell_value_fiat - t.buy_value_fiat) %>
 </li><br>
 </ol>
-  <% end %>
 <% end %>

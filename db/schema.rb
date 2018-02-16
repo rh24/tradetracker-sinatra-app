@@ -13,8 +13,9 @@
 ActiveRecord::Schema.define(version: 20180215204055) do
 
   create_table "trades", force: :cascade do |t|
-    t.boolean "private", default: false
+    t.boolean "viewable", default: false
     t.string "coin"
+    t.integer "quantity"
     t.integer "buy_value_fiat"
     t.integer "sell_value_fiat"
     t.string "date"

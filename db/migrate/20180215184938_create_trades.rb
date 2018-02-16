@@ -1,8 +1,9 @@
 class CreateTrades < ActiveRecord::Migration[5.1]
   def change
     create_table :trades do |t|
-      t.boolean :private, default: false
+      t.boolean :viewable, default: false
       t.string :coin
+      t.integer :quantity
       t.integer :buy_value_fiat
       t.integer :sell_value_fiat
       t.string :date
