@@ -19,7 +19,11 @@
     &emsp;<label>Sell Value (Fiat): </label><%= t.sell_value_fiat %><br>
     &emsp;<label>Net Profit/Loss: </label><%= (t.sell_value_fiat - t.buy_value_fiat) %>
     &emsp;<label>Date: </label><%= t.date %><br><br>
-    &emsp;<label>Notes: </label><%= t.notes %><br><br><br>
+    &emsp;<label>Notes: </label><%= t.notes %><br><br>
+    <% if t.user_id == current_user.id %>
+      &emsp;<a href='/trades/<%=t.id%>/edit'>Edit</a> / <a href='/trades/<%=t.id%>/delete'>Delete</a>
+    <% end %>
+    <br><br><br>
     <% i += 1 %>
   <% end %>
 <% end %>

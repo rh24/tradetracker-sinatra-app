@@ -17,14 +17,8 @@ class TradesController < ApplicationController
     trade.save
     trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
     useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
-    # binding.pry
-    # if trade.viewable == true
-    #   @trades = Trade.all
+    
     redirect to '/trades'
-    # else
-    #   @trades = Trade.where(user_id: current_user.id)
-    #   erb :'/users/private_show'
-    # end
   end
 
   get '/trades/new' do

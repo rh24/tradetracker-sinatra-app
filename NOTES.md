@@ -78,7 +78,8 @@ Controller
 
 - Sanitize input to not allow blank input fields.
 - Make views for Years. 2017, 2018, etc.
-- Must limit content editing to the user who created that content.
+<!-- - Must limit content editing to the user who created that content. -->
 - *User input must be validated (controller is fine) to ensure that bad data isn't created
 Any validation failures must be shown to user with an error message
 - Why does the first logged trade never show?
+- fix bytesize error
