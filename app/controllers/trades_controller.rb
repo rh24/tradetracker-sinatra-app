@@ -1,4 +1,5 @@
 class TradesController < ApplicationController
+  register Sinatra::Flash
 
   get '/trades' do
     @user = current_user
@@ -11,19 +12,17 @@ class TradesController < ApplicationController
   end
 
   post '/trades' do
-    @trades = Trade.where(user_id: current_user.id)
     trade = Trade.create(params)
     trade.user_id = session[:user_id]
     trade.save
     trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
     useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
     # binding.pry
-    @years = Year.where()
-    # trade.year = trade_year.year
-    # binding.pry
     if trade.viewable == true
+      @trades = Trade.all
       redirect to '/trades'
     else
+      @trades = Trade.where(user_id: current_user.id)
       erb :'/users/private_show'
     end
   end
@@ -36,6 +35,11 @@ class TradesController < ApplicationController
     end
   end
 
+  get '/trades/private' do
+    @trades = Trade.where(user_id: current_user.id)
+    erb :'/users/private_show'
+  end
+
   get '/trades/:id' do
     @trade = Trade.find_by(id: params[:id])
     @user = User.find(@trade.user_id)
@@ -45,13 +49,18 @@ class TradesController < ApplicationController
 
   get '/trades/:id/edit' do
     @trade = Trade.find_by(id: params[:id])
-    erb :'/trades/edit'
+    if @trade.user_id == current_user.id
+      erb :'/trades/edit'
+    else
+      flash[:message] = "You don't have access to this request."
+      redirect to '/trades/private'
+    end
   end
 
   patch '/trades/:id' do
     trade = Trade.find(params[:id])
     trade.update(coin: params[:coin], quantity: params[:quantity], buy_value_fiat: params[:buy_value_fiat], sell_value_fiat: params[:sell_value_fiat], date: params[:date], notes: params[:notes])
-    
+
     redirect "/trades/#{trade.id}"
   end
 end
