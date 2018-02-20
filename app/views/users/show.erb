@@ -2,8 +2,10 @@ display individual user info
 
 User Profile
 
-Total trades:
-Years traded:
+<h4>Total Trades: <%= @trades.all.size %></h4>
+<h4>Years traded: </h4><% @years.each do |y| %>
+                          <a href='/years/<%=y%>'><%=y%></a>
+                        <% end %>
 
 <h1><%= @user.username %>'s Public Profile</h1>
 
