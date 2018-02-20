@@ -11,7 +11,13 @@ class YearsController < ApplicationController
 
   get '/years/:year' do
     @year = Year.find_by(year: params[:year])
-    @trades = Trade.all.select { |t| t.date.include?(@year.year.to_s) }
-    erb :'/years/show'
+    if logged_in? && !!@year
+      @trades = Trade.all.select { |t| t.date.include?(@year.year.to_s) }
+    elsif !logged_in?
+      redirect to '/login'
+    else
+      flash[:message] = "No available records for this year."
+      redirect to '/error'
+    end
   end
 end
