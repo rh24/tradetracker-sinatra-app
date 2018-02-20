@@ -8,7 +8,7 @@ add delete option -->
   <label>Quantity: </label><input type="text" name="quantity" value="<%=@trade.quantity%>">
   <label>Buy Value (Fiat): </label><input type="text" name="buy_value_fiat" value="<%=@trade.buy_value_fiat%>">
   <label>Sell Value (Fiat): </label><input type="text" name="sell_value_fiat" value="<%=@trade.sell_value_fiat%>">
-  <label>Private Log: </label>
+  <label>Public Log: </label>
   <label>true</label><input type="radio" name="viewable" value="true" <%='checked' if @trade.viewable == true%>>
   <label>false</label><input type="radio" name="viewable" value="false" <%='checked' if @trade.viewable == false%>>
   <label>Date: </label><input type="date" name="date" value="<%=@trade.date%>">
