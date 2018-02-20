@@ -1,4 +1,4 @@
-show individual trade info
+<!-- show individual trade info -->
 
 <% # /trades/:id %>
 <!-- only display notes when inside individual trade view -->
@@ -7,5 +7,5 @@ show individual trade info
 <label>Quantity: </label><%= @trade.quantity %><br>
 <label>Buy Value (Fiat): </label><%= @trade.buy_value_fiat %><br>
 <label>Sell Value (Fiat): </label><%= @trade.sell_value_fiat %><br>
-<label>Net Profit/Loss: </label><%= (@trade.sell_value_fiat - @trade.buy_value_fiat) * @trade.quantity %><br>
+<label>Net Profit/Loss: </label><%= (@trade.sell_value_fiat - @trade.buy_value_fiat) * @trade.quantity %><br><br>
 <label>Notes: </label><%= @trade.notes %>

@@ -37,7 +37,7 @@ Models
 - User has many trades, has many years through trades
 - Year has many users, users have many years (many-to-many relationship)
   (is this many-to-many relationship even necessary? get help.)
-  
+
 Views
 - mkdir trades
   - edit.erb
@@ -75,3 +75,5 @@ Controller
   '/trades/:id'
   '/trades/:id/edit'
   '/trades/:id/delete'
+
+- Years traded: is still showing 2018 twice. Need to get find_or_create_by method working.
