@@ -18,7 +18,9 @@ class TradesController < ApplicationController
     trade.user_id = session[:user_id]
     trade.save
     trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
-    useryear = UserYear.create(user_id: current_user.id, year_id: trade_year.id)
+    useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
+    # binding.pry
+    @years = Year.where()
     # trade.year = trade_year.year
     # binding.pry
     if trade.viewable == true
