@@ -1,14 +1,20 @@
 class UsersController < ApplicationController
+  register Sinatra::Flash
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
-    @trades = Trade.where(user_id: @user.id)
-    @year_ids =
-    UserYear.where(user_id: @user.id).collect do |user_year|
-      user_year.year_id
+    if !!@user
+      @trades = Trade.where(user_id: @user.id)
+      @year_ids =
+      UserYear.where(user_id: @user.id).collect do |user_year|
+        user_year.year_id
+      end
+    else
+      flash[:message] = "This user does not exist."
+      redirect to '/error'
     end
     # binding.pry
-    if logged_in?
+    if logged_in? && !!@user
       erb :'/users/show'
     else
       redirect '/login'
