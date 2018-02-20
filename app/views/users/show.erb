@@ -1,14 +1,11 @@
-display individual user info
+<!-- display individual user info -->
 
-User Profile
-
+<h1><%= @user.username %>'s Public Profile</h1>
 <h4>Total Trades: <%= @trades.all.size %></h4>
 <h4>Years traded: </h4>
 <% @year_ids.each do |year_id| %>
   <a href='/years/<%=Year.find(year_id).year%>'><%=Year.find(year_id).year%></a>
 <% end %>
-
-<h1><%= @user.username %>'s Public Profile</h1>
 
 <h2>Trades</h2>
 <% i = 1 %>
