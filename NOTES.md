@@ -24,7 +24,7 @@ Database
     t.integer :sell_value_fiat
     t.integer :sell_value_satoshi
     t.integer :user_id
-    t.integer :year_id
+    <!-- t.integer :year_id -->
   end
 
 - rake db:create_migration NAME=create_calendar_years
@@ -76,4 +76,4 @@ Controller
   '/trades/:id/edit'
   '/trades/:id/delete'
 
-- Years traded: is still showing 2018 twice. Need to get find_or_create_by method working.
+- Sanitize input to not allow blank input fields.

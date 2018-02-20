@@ -47,4 +47,11 @@ class TradesController < ApplicationController
     @trade = Trade.find_by(id: params[:id])
     erb :'/trades/edit'
   end
+
+  patch '/trades/:id' do
+    trade = Trade.find(params[:id])
+    trade.update(coin: params[:coin], quantity: params[:quantity], buy_value_fiat: params[:buy_value_fiat], sell_value_fiat: params[:sell_value_fiat], date: params[:date], notes: params[:notes])
+    
+    redirect "/trades/#{trade.id}"
+  end
 end
