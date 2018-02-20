@@ -11,8 +11,6 @@ class TradesController < ApplicationController
   end
 
   post '/trades' do
-    # params.each do |k, v|
-    #   if
     @trades = Trade.where(user_id: current_user.id)
     trade = Trade.create(params)
     trade.user_id = session[:user_id]

@@ -1,3 +1,16 @@
-<% # /trades/:id/edit
-  # add delete option
-%>
+<!-- /trades/:id/edit
+add delete option -->
+
+<form action="/trades/<%=@trade.id%>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <label>Name/Symbol: </label><input type="text" name="coin" value="<%=@trade.coin%>">
+  <label>Quantity: </label><input type="text" name="quantity" value="<%=@trade.quantity%>">
+  <label>Buy Value (Fiat): </label><input type="text" name="buy_value_fiat" value="<%=@trade.buy_value_fiat%>">
+  <label>Sell Value (Fiat): </label><input type="text" name="sell_value_fiat" value="<%=@trade.sell_value_fiat%>">
+  <label>Private Log: </label>
+  <label>true</label><input type="radio" name="viewable" value="true" <%='checked' if @trade.viewable == "true"%>>
+  <label>false</label><input type="radio" name="viewable" value="false" <%='checked' if @trade.viewable == "false"%>>
+  <label>Date: </label><input type="date" name="date" value="<%=@trade.date%>">
+  <label>Notes: </label><input type="text" name="notes" value="<%=@trade.notes%>">
+  <input type="submit" value="Edit Trade">
+</form>
