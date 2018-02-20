@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180215204055) do
     t.integer "buy_value_fiat"
     t.integer "sell_value_fiat"
     t.string "date"
+    t.text "notes"
     t.integer "user_id"
     t.text "note"
   end

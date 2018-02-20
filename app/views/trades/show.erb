@@ -1,1 +1,11 @@
 show individual trade info
+
+<% # /trades/:id %>
+<!-- only display notes when inside individual trade view -->
+<h4>This trade was made by <a href='/users/<%=@user.slug%>'><%= @user.username %></a></h4>
+<label>Name/Symbol: </label><%= @trade.coin %><br>
+<label>Quantity: </label><%= @trade.quantity %><br>
+<label>Buy Value (Fiat): </label><%= @trade.buy_value_fiat %><br>
+<label>Sell Value (Fiat): </label><%= @trade.sell_value_fiat %><br>
+<label>Net Profit/Loss: </label><%= (@trade.sell_value_fiat - @trade.buy_value_fiat) * @trade.quantity %><br>
+<label>Notes: </label><%= @trade.notes %>

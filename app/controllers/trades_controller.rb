@@ -35,4 +35,16 @@ class TradesController < ApplicationController
       redirect to '/login'
     end
   end
+
+  get '/trades/:id' do
+    @trade = Trade.find_by(id: params[:id])
+    @user = User.find(@trade.user_id)
+    # binding.pry
+    erb :'/trades/show'
+  end
+
+  get '/trades/:id/edit' do
+    @trade = Trade.find_by(id: params[:id])
+    erb :'/trades/edit'
+  end
 end

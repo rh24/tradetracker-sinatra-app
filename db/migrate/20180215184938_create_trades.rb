@@ -7,6 +7,7 @@ class CreateTrades < ActiveRecord::Migration[5.1]
       t.integer :buy_value_fiat
       t.integer :sell_value_fiat
       t.string :date
+      t.text :notes
       # t.integer :buy_value_satoshi
       # t.integer :sell_value_satoshi
       t.integer :user_id
