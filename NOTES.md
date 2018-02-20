@@ -81,3 +81,4 @@ Controller
 - Must limit content editing to the user who created that content.
 - *User input must be validated (controller is fine) to ensure that bad data isn't created
 Any validation failures must be shown to user with an error message
+- Why does the first logged trade never show?

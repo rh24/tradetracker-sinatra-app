@@ -15,7 +15,12 @@ list all trades that are viewable to you (after a follow request) -->
       &emsp;<label>Sell Value (Fiat): </label><%= t.sell_value_fiat %><br>
       &emsp;<label>Net Profit/Loss: </label><%= (t.sell_value_fiat - t.buy_value_fiat) * t.quantity %>
       &emsp;<label>Date: </label><%= t.date %>
-      &emsp;<label>User: </label><a href='/users/<%=User.find_by(id: t.user_id).slug%>'><%= User.find_by(id: t.user_id).username %></a><br><br><br><br>
+      &emsp;<label>User: </label><a href='/users/<%=User.find_by(id: t.user_id).slug%>'><%= User.find_by(id: t.user_id).username %></a>
+      <% if t.user_id == current_user.id %>
+        <br><br>
+        &emsp;<a href='/trades/<%=t.id%>/edit'>Edit</a> / <a href='/trades/<%=t.id%>/delete'>Delete</a>
+      <% end %>
+      <br><br><br><br>
       <% i += 1 %>
     <% end %>
   <% end %>

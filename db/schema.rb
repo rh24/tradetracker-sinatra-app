@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215204055) do
+ActiveRecord::Schema.define(version: 20180215195832) do
 
   create_table "trades", force: :cascade do |t|
     t.boolean "viewable", default: false
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20180215204055) do
     t.string "date"
     t.text "notes"
     t.integer "user_id"
-    t.text "note"
   end
 
   create_table "user_years", force: :cascade do |t|
