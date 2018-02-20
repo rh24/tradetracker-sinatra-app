@@ -1,5 +1,6 @@
 class Trade < ActiveRecord::Base
-  validates_presence_of :coin, :quantity, :viewable, :buy_value_fiat, :sell_value_fiat, :date
+  validates_presence_of :coin, :quantity, :buy_value_fiat, :sell_value_fiat, :date
+  validates_inclusion_of :viewable, in: [true, false]
   belongs_to :user
 
   def net_profitloss_fiat
