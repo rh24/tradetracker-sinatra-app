@@ -5,14 +5,15 @@
 <h1>My Trades</h1>
 <% i = 1 %>
 <% while i < @trades.length %>
-  <% @trades.sort { |a, b| a.date <=> b.date }.each do |t| %>
-    <label><a href='/trades/<%=t.id%>'><%=i%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
-    <label>Quantity: </label><%= t.quantity %><br>
-    <label>Buy Value (Fiat): </label><%= t.buy_value_fiat %><br>
-    <label>Sell Value (Fiat): </label><%= t.sell_value_fiat %><br>
-    <label>Net Profit/Loss: </label><%= (t.sell_value_fiat - t.buy_value_fiat) %>
+  <% @trades.sort { |a, b| b.date <=> a.date }.each do |t| %>
+    <label><a href='/trades/t.id'><%=i%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
+    &emsp;<label>Quantity: </label><%= t.quantity %><br>
+    &emsp;<label>Buy Value (Fiat): </label><%= t.buy_value_fiat %><br>
+    &emsp;<label>Sell Value (Fiat): </label><%= t.sell_value_fiat %><br>
+    &emsp;<label>Net Profit/Loss: </label><%= (t.sell_value_fiat - t.buy_value_fiat) %>
     &emsp;<label>Date: </label><%= t.date %><br><br>
-    <label>Notes: </label><%= t.notes %><br>
+    &emsp;<label>Notes: </label><%= t.notes %><br><br><br>
+    <% i += 1 %>
   <% end %>
 <% end %>
 
