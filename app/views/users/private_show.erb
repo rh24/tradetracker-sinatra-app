@@ -3,11 +3,11 @@
 <% end %>
 
 <h1>My Profile</h1>
-<h4>Total Trades: <%= @trades.all.size %></h4>
-<h4>Years traded: </h4>
+<p><strong>Total trades: </strong><%= @trades.all.size %></p>
+<p><strong>Years active:</strong>
 <% @year_ids.each do |year_id| %>
   <a href='/years/<%=Year.find(year_id).year%>'><%=Year.find(year_id).year%></a>
-<% end %>
+<% end %> </p>
 
 <h2>My Trades</h2>
 <% i = 1 %>
