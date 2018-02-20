@@ -14,7 +14,9 @@ class UsersController < ApplicationController
       redirect to '/error'
     end
     # binding.pry
-    if logged_in? && !!@user
+    if logged_in? && current_user.slug == params[:slug]
+      erb :'/users/private_show'
+    elsif logged_in?
       erb :'/users/show'
     else
       redirect '/login'
