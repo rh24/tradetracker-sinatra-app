@@ -1,7 +1,7 @@
 <!-- list all trades made in this year if viewable -->
 <h1><%= @year.year %></h1>
-<label><strong>Total trades logged: </strong></label><%= Trade.all.select { |t| t.date.include?(@year.year.to_s) }.size %><br><br><br>
-
+<label><strong>Total trades logged: </strong></label><%= Trade.all.select { |t| t.date.include?(@year.year.to_s) }.size %>
+<p><em>Note: Only public logs are listed below.</em></p><br>
 <% i = 1 %>
 <% while i < @trades.length %>
   <% @trades.each do |t| %>
