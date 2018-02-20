@@ -13,11 +13,14 @@ class TradesController < ApplicationController
   post '/trades' do
     # params.each do |k, v|
     #   if
-    binding.pry
     @trades = Trade.where(user_id: current_user.id)
     trade = Trade.create(params)
     trade.user_id = session[:user_id]
     trade.save
+    trade_year = Year.create(year: params[:date][0..4].to_i)
+    useryear = UserYear.create(user_id: current_user.id, year_id: trade_year.id)
+    # trade.year = trade_year.year
+    # binding.pry
     if trade.viewable == true
       redirect to '/trades'
     else

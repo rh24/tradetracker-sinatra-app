@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     @trades = Trade.where(user_id: @user.id)
     @years = UserYear.where(user_id: @user.id)
-    binding.pry
+    # binding.pry
     if logged_in?
       erb :'/users/show'
     else
