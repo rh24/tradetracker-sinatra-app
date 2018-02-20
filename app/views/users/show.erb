@@ -4,8 +4,8 @@ User Profile
 
 <h4>Total Trades: <%= @trades.all.size %></h4>
 <h4>Years traded: </h4>
-<% @years.each do |y| %>
-  <a href='/years/<%=y.year_id%>'><%=y.year_id%></a>
+<% @year_ids.each do |year_id| %>
+  <a href='/years/<%=Year.find(year_id).year%>'><%=Year.find(year_id).year%></a>
 <% end %>
 
 <h1><%= @user.username %>'s Public Profile</h1>

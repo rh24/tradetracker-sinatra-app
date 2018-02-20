@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     @trades = Trade.where(user_id: @user.id)
-    @years = UserYear.where(user_id: @user.id)
+    @year_ids =
+    UserYear.where(user_id: @user.id).collect do |user_year|
+      user_year.year_id
+    end
     # binding.pry
     if logged_in?
       erb :'/users/show'

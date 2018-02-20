@@ -17,7 +17,7 @@ class TradesController < ApplicationController
     trade = Trade.create(params)
     trade.user_id = session[:user_id]
     trade.save
-    trade_year = Year.create(year: params[:date][0..4].to_i)
+    trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
     useryear = UserYear.create(user_id: current_user.id, year_id: trade_year.id)
     # trade.year = trade_year.year
     # binding.pry
