@@ -5,9 +5,9 @@
 <h4>This trade was made by <a href='/users/<%=@user.slug%>'><%= @user.username %></a></h4>
 <label>Name/Symbol: </label><%= @trade.coin %><br>
 <label>Quantity: </label><%= @trade.quantity %><br>
-<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{@trade.buy_value_fiat}" %><br>
-<label>Sell Value (Fiat): </label><%= "#{t.fiat_symbol}#{@trade.sell_value_fiat}" %><br>
-<label>Net Profit/Loss: </label><%= "#{t.fiat_symbol}#{(@trade.sell_value_fiat - @trade.buy_value_fiat) * @trade.quantity}" %><br><br>
+<label>Buy Value (Fiat): </label><%= "#{@trade.fiat_symbol}#{@trade.buy_value_fiat}" %><br>
+<label>Sell Value (Fiat): </label><%= "#{@trade.fiat_symbol}#{@trade.sell_value_fiat}" %><br>
+<label>Net Profit/Loss: </label><%= "#{@trade.fiat_symbol}#{(@trade.sell_value_fiat - @trade.buy_value_fiat) * @trade.quantity}" %><br><br>
 <label>Current Status: </label>
   <% if @trade.viewable == true %>
     Public

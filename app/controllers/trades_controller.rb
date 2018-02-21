@@ -31,7 +31,12 @@ class TradesController < ApplicationController
 
   get '/trades/:id' do
     @trade = Trade.find_by(id: params[:id])
-    @user = User.find(@trade.user_id)
+    if @trade == nil
+      flash[:message] = "No record found."
+      redirect to '/error'
+    else
+      @user = User.find(@trade.user_id)
+    end
     if @trade.viewable != true && current_user.id != @trade.user_id
       flash[:message] = "You do not have access to this information."
       redirect to '/error'
@@ -57,5 +62,22 @@ class TradesController < ApplicationController
     trade.update(coin: params[:coin], quantity: params[:quantity], buy_value_fiat: params[:buy_value_fiat], sell_value_fiat: params[:sell_value_fiat], date: params[:date], viewable: params[:viewable], notes: params[:notes])
 
     redirect "/trades/#{trade.id}"
+  end
+
+  get '/trades/:id/delete' do
+    user = User.find(current_user.id)
+    @trade = Trade.find(params[:id])
+    if logged_in? && current_user.id == @trade.user_id
+      erb :'/trades/delete'
+    else
+      flash[:message] = "Unable to execute request."
+      redirect to '/error'
+    end
+  end
+
+  delete '/trades/:id' do
+    trade = Trade.find(params[:id])
+    trade.destroy
+    redirect to '/trades'
   end
 end

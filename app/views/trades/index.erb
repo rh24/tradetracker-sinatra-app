@@ -5,10 +5,10 @@ list all trades that are viewable to you (after a follow request) -->
 <h4><a href='/users/<%=User.find_by(id: current_user.id).slug%>'>Go to my trades</a></h4>
 
 <!-- list links to /trades/:id -->
-<% i = 1 %>
+<% i = 0 %>
 <% while i < @trades.length %>
   <% @trades.each do |t| %>
-      <label><a href='/trades/<%=t.id%>'><%=i%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
+      <label><a href='/trades/<%=t.id%>'><%=i+1%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
       &emsp;<label>Quantity: </label><%= t.quantity %><br>
       &emsp;<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.buy_value_fiat}" %><br>
       &emsp;<label>Sell Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.sell_value_fiat}" %><br>
