@@ -32,8 +32,14 @@ class TradesController < ApplicationController
   get '/trades/:id' do
     @trade = Trade.find_by(id: params[:id])
     @user = User.find(@trade.user_id)
-    # binding.pry
-    erb :'/trades/show'
+    if @trade.viewable != true && current_user.id != @trade.user_id
+      flash[:message] = "You do not have access to this information."
+      redirect to '/error'
+    elsif @trade.viewable == true
+      erb :'/trades/show'
+    elsif @trade.viewable == false && current_user.id == @trade.user_id
+      erb :'/trades/show'
+    end
   end
 
   get '/trades/:id/edit' do
