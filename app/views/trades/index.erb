@@ -1,5 +1,7 @@
-<!-- list all trades that are publicly viewable
-list all trades that are viewable to you (after a follow request) -->
+<% if !!flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+<!-- style with css -->
 
 <h1>View All Public Trades</h1>
 <h4><a href='/users/<%=User.find_by(id: current_user.id).slug%>'>Go to my trades</a></h4>
@@ -23,3 +25,7 @@ list all trades that are viewable to you (after a follow request) -->
       <% i += 1 %>
   <% end %>
 <% end %>
+
+
+<!-- list all trades that are publicly viewable
+list all trades that are viewable to you (after a follow request) -->

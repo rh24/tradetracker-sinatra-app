@@ -5,6 +5,7 @@ class TradesController < ApplicationController
     @user = current_user
     @trades = Trade.all.where(viewable: true)
     if logged_in?
+      # flash[:message] = "You have successfully deleted your trade."
       erb :'/trades/index'
     else
       redirect to '/login'
@@ -18,7 +19,9 @@ class TradesController < ApplicationController
       trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
       useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
       redirect to '/trades'
-    else
+    end
+    need_valid_input = [params[:coin], params[:quantity], params[:fiat_symbol], params[:buy_value_fiat], params[:sell_value_fiat], params[:viewable], params[:date]]
+    if need_valid_input.include?("")
       flash[:message] = "Please, fill out fields with valid inputs."
       redirect to '/trades/new'
     end
@@ -88,6 +91,7 @@ class TradesController < ApplicationController
   delete '/trades/:id' do
     trade = Trade.find(params[:id])
     trade.destroy
+    flash[:message] = "You have successfully deleted your trade."
     redirect to '/trades'
   end
 end

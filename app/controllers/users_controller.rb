@@ -38,6 +38,7 @@ class UsersController < ApplicationController
     if user.save
       redirect to '/trades'
     else
+      flash[:message] = "Please, fill in all fields with valid input."
       redirect to '/signup'
     end
   end
