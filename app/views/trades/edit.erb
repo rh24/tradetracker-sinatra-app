@@ -1,12 +1,14 @@
-<!-- /trades/:id/edit
-add delete option -->
+<% if !!flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+
 <h1>Edit Trade</h1>
 
 <form action="/trades/<%=@trade.id%>" method="POST">
   <input type="hidden" name="_method" value="PATCH">
   <label>Name/Symbol: </label><input type="text" name="coin" value="<%=@trade.coin%>">
   <label>Quantity: </label><input type="text" name="quantity" value="<%=@trade.quantity%>">
-  <label>Fiat Symbol: </label><input type="text" name="fiat_symbol">
+  <label>Fiat Symbol: </label><input type="text" name="fiat_symbol" value="<%=@trade.fiat_symbol%>">
   <label>Buy Value (Fiat): </label><input type="text" name="buy_value_fiat" value="<%=@trade.buy_value_fiat%>">
   <label>Sell Value (Fiat): </label><input type="text" name="sell_value_fiat" value="<%=@trade.sell_value_fiat%>">
   <label>Public Log: </label>
@@ -16,3 +18,6 @@ add delete option -->
   <label>Notes: </label><input type="text" name="notes" value="<%=@trade.notes%>">
   <input type="submit" value="Edit Trade">
 </form>
+
+<!-- /trades/:id/edit
+add delete option -->
