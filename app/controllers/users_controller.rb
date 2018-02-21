@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
+    # binding.pry
     if !!@user
       @trades = Trade.where(user_id: @user.id)
       @year_ids =
@@ -70,5 +71,24 @@ class UsersController < ApplicationController
   post '/logout' do
     session.clear
     redirect to '/login'
+  end
+
+  get '/users/:slug/delete' do
+    user = User.find_by_slug(params[:slug])
+    # binding.pry
+    if !!user && current_user.id == user.id
+      Trade.where(user_id: user.id).destroy_all
+      UserYear.where(user_id: user.id).destroy_all
+      User.where(id: user.id).destroy_all
+
+      flash[:message] = "You have deleted your account."
+      redirect to '/signup'
+    elsif !!user && current_user.id != user.id
+      flash[:message] = "Hey! You can't do that!"
+      redirect to '/error'
+    else
+      flash[:message] = "User not found"
+      redirect to '/error'
+    end
   end
 end
