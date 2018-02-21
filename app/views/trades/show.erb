@@ -8,7 +8,7 @@
 <label>Buy Value (Fiat): </label><%= @trade.buy_value_fiat %><br>
 <label>Sell Value (Fiat): </label><%= @trade.sell_value_fiat %><br>
 <label>Net Profit/Loss: </label><%= (@trade.sell_value_fiat - @trade.buy_value_fiat) * @trade.quantity %><br><br>
-<!-- <label>Current Status: </label>
+<label>Current Status: </label>
   <% if @trade.viewable == true %>
     Public
   <% elsif @trade.viewable == false %>
