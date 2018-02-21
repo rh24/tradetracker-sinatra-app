@@ -3,3 +3,9 @@
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Trade">
 </form>
+
+<form action="/trades/<%=@trade.id%>" method="GET">
+  <input type="submit" name="keep" value="No, Keep Record">
+</form>
+
+<!-- How do I make these buttons side by side? Is the only way to execute these actions by making two separate forms? -->

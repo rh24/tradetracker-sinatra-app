@@ -48,6 +48,9 @@ class TradesController < ApplicationController
     elsif @trade.viewable == false && current_user.id == @trade.user_id
       erb :'/trades/show'
     end
+    # if params[:keep] == "No, Keep Record"
+    #   redirect "/trades/#{@trade.id}"
+    # end
   end
 
   get '/trades/:id/edit' do
