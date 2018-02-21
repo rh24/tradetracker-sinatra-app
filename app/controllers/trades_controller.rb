@@ -3,7 +3,7 @@ class TradesController < ApplicationController
 
   get '/trades' do
     @user = current_user
-    @trades = Trade.all
+    @trades = Trade.all.where(viewable: true)
     if logged_in?
       erb :'/trades/index'
     else
