@@ -10,9 +10,9 @@ list all trades that are viewable to you (after a follow request) -->
   <% @trades.each do |t| %>
       <label><a href='/trades/<%=t.id%>'><%=i%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
       &emsp;<label>Quantity: </label><%= t.quantity %><br>
-      &emsp;<label>Buy Value (Fiat): </label><%= t.buy_value_fiat %><br>
-      &emsp;<label>Sell Value (Fiat): </label><%= t.sell_value_fiat %><br>
-      &emsp;<label>Net Profit/Loss: </label><%= (t.sell_value_fiat - t.buy_value_fiat) * t.quantity %>
+      &emsp;<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.buy_value_fiat}" %><br>
+      &emsp;<label>Sell Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.sell_value_fiat}" %><br>
+      &emsp;<label>Net Profit/Loss: </label><%= "#{t.fiat_symbol}#{(t.sell_value_fiat - t.buy_value_fiat) * t.quantity}" %>
       &emsp;<label>Date: </label><%= t.date %>
       &emsp;<label>User: </label><a href='/users/<%=User.find_by(id: t.user_id).slug%>'><%= User.find_by(id: t.user_id).username %></a>
       <% if t.user_id == current_user.id %>

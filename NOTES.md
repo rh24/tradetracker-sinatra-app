@@ -76,6 +76,7 @@ Controller
   '/trades/:id/edit'
   '/trades/:id/delete'
 
+- first logged trade never shows!
 - Sanitize input to not allow blank input fields.
 - Make views for Years. 2017, 2018, etc.
 <!-- - Must limit content editing to the user who created that content. -->
