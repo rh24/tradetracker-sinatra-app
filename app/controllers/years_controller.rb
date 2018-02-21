@@ -12,9 +12,7 @@ class YearsController < ApplicationController
   get '/years/:year' do
     @year = Year.find_by(year: params[:year])
     if logged_in? && !!@year
-      # @trades = Trade.all.select { |t| t.date.include?(@year.year.to_s) }
-      @trades = Trade.all
-      # binding.pry
+      @trades = Trade.all.select { |t| t.date.include?(@year.year.to_s) }
       erb :'/years/show'
     elsif !logged_in?
       redirect to '/login'
