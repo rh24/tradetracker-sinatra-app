@@ -10,6 +10,7 @@
 <% i = 0 %>
 <% while i < @trades.length %>
   <% @trades.each do |t| %>
+    <% if t.viewable == true || t.user_id == current_user.id %>
       <label><a href='/trades/<%=t.id%>'><%=i+1%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
       &emsp;<label>Quantity: </label><%= t.quantity %><br>
       &emsp;<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.buy_value_fiat}" %><br>
@@ -23,6 +24,7 @@
       <% end %>
       <br><br><br><br>
       <% i += 1 %>
+    <% end %>
   <% end %>
 <% end %>
 

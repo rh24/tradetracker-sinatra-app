@@ -3,7 +3,7 @@ class TradesController < ApplicationController
 
   get '/trades' do
     @user = current_user
-    @trades = Trade.all.where(viewable: true)
+    @trades = Trade.all
     if logged_in?
       # flash[:message] = "You have successfully deleted your trade."
       erb :'/trades/index'
