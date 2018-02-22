@@ -1,5 +1,5 @@
 <!-- list all unique years -->
 
-<% Year.all.each do |y| %>
-  <ul><a href='/years/<%=y.year%>'><%= y.year %></a></ul>
+<% @years.each do |y| %>
+  <ul><a href='/years/<%=y%>'><%= y %></a></ul>
 <% end %>
