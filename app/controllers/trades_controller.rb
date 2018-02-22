@@ -5,7 +5,6 @@ class TradesController < ApplicationController
     @user = current_user
     @trades = Trade.all
     if logged_in?
-      # flash[:message] = "You have successfully deleted your trade."
       erb :'/trades/index'
     else
       redirect to '/login'
@@ -51,9 +50,6 @@ class TradesController < ApplicationController
     elsif @trade.viewable == false && current_user.id == @trade.user_id
       erb :'/trades/show'
     end
-    # if params[:keep] == "No, Keep Record"
-    #   redirect "/trades/#{@trade.id}"
-    # end
   end
 
   get '/trades/:id/edit' do
