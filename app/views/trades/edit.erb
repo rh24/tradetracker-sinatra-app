@@ -19,5 +19,7 @@
   <input type="submit" value="Edit Trade">
 </form>
 
+<% UserYear.where(year_id: Year.where(year: @trade.date[0..4].to_i)).destroy_all %>
+
 <!-- /trades/:id/edit
 add delete option -->

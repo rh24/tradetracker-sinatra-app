@@ -38,45 +38,10 @@ Models
 - Year has many users, users have many years (many-to-many relationship)
   (is this many-to-many relationship even necessary? get help.)
 
-Views
-- mkdir trades
-  - edit.erb
-  - index.erb # publicly viewable trades, users you follow, etc.
-  - new.erb
-  - show.erb
-- mkdir users
-  - show.erb
-  - edit.erb # allow users to edit their information?
-- homepage.erb
-- login.erb
-- logout.erb
-- signup.erb
 
-Controller
-- ApplicationController
-  helpers do
+- Can you have a three table join?
+UserYearTrade
 
-  end
-  get '/' do
-
-  end
-
-- UsersController
-  get '/users/:slug' do
-
-  end # Remember to make trades optionally private / public!
-  signup
-  login
-  logout
-
-- TradesController
-  '/trades'
-  '/trades/new'
-  '/trades/:id'
-  '/trades/:id/edit'
-  '/trades/:id/delete'
-
-- Sanitize input to not allow blank input fields.
 - Make views for Years. 2017, 2018, etc.
 <!-- - Must limit content editing to the user who created that content. -->
 - How do I correctly insert checked if for radio buttons and consequently alter the value of @trade.viewable? Adding the checked if made my @trade.viewable static. I could not log the new value if changed from true to false.

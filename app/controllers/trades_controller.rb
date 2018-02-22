@@ -14,10 +14,15 @@ class TradesController < ApplicationController
   post '/trades' do
     trade = current_user.trades.build(params)
     # What's the benefit of using user.association.build over Trade.create, then trade.user_id = current_user.id?
+    # trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
+    # useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
     if trade.save
       trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
       useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
       redirect to '/trades'
+    else
+      flash[:message] = "Please, fill out fields with valid inputs."
+      redirect to '/trades/new'
     end
     need_valid_input = [params[:coin], params[:quantity], params[:fiat_symbol], params[:buy_value_fiat], params[:sell_value_fiat], params[:viewable], params[:date]]
     if need_valid_input.include?("")
@@ -54,17 +59,22 @@ class TradesController < ApplicationController
 
   get '/trades/:id/edit' do
     @trade = Trade.find_by(id: params[:id])
-    if @trade.user_id == current_user.id
+    if logged_in? && @trade.user_id == current_user.id
       erb :'/trades/edit'
     else
       flash[:message] = "You don't have access to this request."
-      redirect to '/trades/private'
+      redirect to '/trades'
     end
   end
 
   patch '/trades/:id' do
     trade = Trade.find(params[:id])
     trade.update(coin: params[:coin], quantity: params[:quantity], buy_value_fiat: params[:buy_value_fiat], sell_value_fiat: params[:sell_value_fiat], date: params[:date], viewable: params[:viewable], notes: params[:notes])
+    # RECREATE YEAR AND USERYEAR while deleting old date in trades/edit.erb view
+    # in order to update `Years active: ` in users/private_show.erb
+    trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
+    useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
+
     if trade.save
       redirect "/trades/#{trade.id}"
     else

@@ -7,7 +7,7 @@
 <label>Quantity: </label><%= @trade.quantity %><br>
 <label>Buy Value (Fiat): </label><%= "#{@trade.fiat_symbol}#{@trade.buy_value_fiat}" %><br>
 <label>Sell Value (Fiat): </label><%= "#{@trade.fiat_symbol}#{@trade.sell_value_fiat}" %><br>
-<label>Net Profit/Loss: </label><%= "#{@trade.fiat_symbol}#{(@trade.sell_value_fiat - @trade.buy_value_fiat) * @trade.quantity}" %><br><br>
+<label>Net Profit/Loss: </label><%= "#{@trade.fiat_symbol}#{(@trade.sell_value_fiat - @trade.buy_value_fiat) * @trade.quantity}" %> &emsp;<label>Date: </label><%= @trade.date %><br><br>
 <label>Current Status: </label>
   <% if @trade.viewable == true %>
     Public
