@@ -8,4 +8,8 @@
   <input type="submit" name="keep" value="No, Keep Record">
 </form>
 
+<% if !@other_trades_in_that_year %>
+  <% UserYear.where(user_id: current_user.id, year_id: Year.find_by(year: @trade.date[0..4].to_i).id).destroy_all %>
+<% end %>
+
 <!-- How do I make these buttons side by side? Is the only way to execute these actions by making two separate forms? -->

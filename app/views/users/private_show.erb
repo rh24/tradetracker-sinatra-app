@@ -8,17 +8,18 @@
 <h2>My Trades</h2>
 
   <% @trades.sort { |a, b| b.date <=> a.date }.each do |t| %>
-    <label><a href='/trades/<%=t.id%>'><%=t.id%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
+    <li><label>Name/Symbol: </label><%= t.coin %><br>
     &emsp;<label>Quantity: </label><%= t.quantity %><br>
     &emsp;<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.buy_value_fiat}" %><br>
     &emsp;<label>Sell Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.sell_value_fiat}" %><br>
     &emsp;<label>Net Profit/Loss: </label><%= "#{t.fiat_symbol}#{(t.sell_value_fiat - t.buy_value_fiat) * t.quantity}" %>
-    &emsp;<label>Date: </label><%= t.date %><br><br>
-    &emsp;<label>Notes: </label><%= t.notes %><br><br>
+    &emsp;<label>Date: </label><%= t.date %>
+    &emsp;<label>ID# </label><a href='/trades/<%=t.id%>'><%=t.id%></a>
     <% if t.user_id == current_user.id %>
       &emsp;<a href='/trades/<%=t.id%>/edit'>Edit</a> / <a href='/trades/<%=t.id%>/delete'>Delete</a>
-    <% end %>
-    <br><br><br>
+    <% end %><br><br>
+    &emsp;<label>Notes: </label><%= t.notes %><br><br>
+    <br>
   <% end %>
 
 

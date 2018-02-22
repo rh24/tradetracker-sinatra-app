@@ -6,8 +6,10 @@
 <% @year_ids.each do |year_id| %>
   <a href='/years/<%=Year.find(year_id).year%>'><%=Year.find(year_id).year%></a>
 <% end %>
-
+<br><br>
 <h2>Trades</h2>
+
+<p><em>Note: Only publicly viewable and/or current user logs are listed below.</em></p>
   <% @trades.sort { |a, b| b.date <=> a.date }.each do |t| %>
     <% if t.viewable == true %>
     <!-- make trade.id's clickable -->
@@ -15,6 +17,7 @@
     &emsp;<label>Quantity: </label><%= t.quantity %><br>
     &emsp;<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.buy_value_fiat}" %><br>
     &emsp;<label>Sell Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.sell_value_fiat}" %><br>
-    &emsp;<label>Net Profit/Loss: </label><%= "#{t.fiat_symbol}#{(t.sell_value_fiat - t.buy_value_fiat) * t.quantity}" %>  &emsp;<label>Date: </label><%= t.date %><br><br>
+    &emsp;<label>Net Profit/Loss: </label><%= "#{t.fiat_symbol}#{(t.sell_value_fiat - t.buy_value_fiat) * t.quantity}" %>  &emsp;<label>Date: </label><%= t.date %>
+    &emsp;<label>ID# </label><a href='/trades/<%=t.id%>'><%=t.id%></a><br><br>
     <% end %>
   <% end %>

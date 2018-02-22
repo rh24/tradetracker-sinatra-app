@@ -88,6 +88,13 @@ class TradesController < ApplicationController
   get '/trades/:id/delete' do
     user = User.find(current_user.id)
     @trade = Trade.find(params[:id])
+
+    @other_trades_in_that_year = current_user.trades.detect do |t|
+      if t != @trade
+        t.date == @trade.date[0..4].to_i
+      end
+    end
+
     if logged_in? && current_user.id == @trade.user_id
       erb :'/trades/delete'
     else
@@ -99,6 +106,7 @@ class TradesController < ApplicationController
   delete '/trades/:id' do
     trade = Trade.find(params[:id])
     trade.destroy
+    UserYear
     flash[:message] = "You have successfully deleted your trade."
     redirect to '/trades'
   end
