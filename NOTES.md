@@ -43,10 +43,8 @@ Models
 UserYearTrade
 
 - Do I want to make one show page for users instead of show.erb private_show.erb?
-- In years views, trades are printing twice. This was an issue caused by trying to use a while i < @trades.length loop that still printed every viewable trade for the length of the entire @trades array. So, if there were private trades in the array, the viewable ones printed multiple times to compensate for the private ones.
-
-- If user deletes account, all data input by that user must be deleted as well.
-
+<!-- - In years views, trades are printing twice. This was an issue caused by trying to use a while i < @trades.length loop that still printed every viewable trade for the length of the entire @trades array. So, if there were private trades in the array, the viewable ones printed multiple times to compensate for the private ones. -->
+<!-- - If user deletes account, all data input by that user must be deleted as well. -->
 <!-- - Make views for Years. 2017, 2018, etc. -->
 <!-- - Must limit content editing to the user who created that content. -->
 - How do I correctly insert checked if for radio buttons and consequently alter the value of @trade.viewable? Adding the checked if made my @trade.viewable static. I could not log the new value if changed from true to false.
