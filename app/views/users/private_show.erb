@@ -7,10 +7,8 @@
 
 <h2>My Trades</h2>
 
-<% i = 0 %>
-<% while i < @trades.length %>
   <% @trades.sort { |a, b| b.date <=> a.date }.each do |t| %>
-    <label><a href='/trades/<%=t.id%>'><%=i+1%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
+    <label><a href='/trades/<%=t.id%>'><%=t.id%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
     &emsp;<label>Quantity: </label><%= t.quantity %><br>
     &emsp;<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.buy_value_fiat}" %><br>
     &emsp;<label>Sell Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.sell_value_fiat}" %><br>
@@ -21,9 +19,7 @@
       &emsp;<a href='/trades/<%=t.id%>/edit'>Edit</a> / <a href='/trades/<%=t.id%>/delete'>Delete</a>
     <% end %>
     <br><br><br>
-    <% i += 1 %>
   <% end %>
-<% end %>
 
 
 <label><a href='/logout'>Log out</a></label>

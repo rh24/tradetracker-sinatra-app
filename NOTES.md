@@ -42,6 +42,10 @@ Models
 - Can you have a three table join?
 UserYearTrade
 
+- In years views, trades are printing twice. Fix this.
+- In years/index view, 2018 is showing up because users/:slug (username: test) still has trades logged in 2018.
+- If user deletes account, all data input by that user must be deleted as well.
+
 <!-- - Make views for Years. 2017, 2018, etc. -->
 <!-- - Must limit content editing to the user who created that content. -->
 - How do I correctly insert checked if for radio buttons and consequently alter the value of @trade.viewable? Adding the checked if made my @trade.viewable static. I could not log the new value if changed from true to false.
