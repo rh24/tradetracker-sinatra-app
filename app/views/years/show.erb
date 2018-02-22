@@ -2,18 +2,19 @@
 <h1><%= @year.year %></h1>
 <label><strong>Total trades logged: </strong></label><%= @trades.count %>
 <p><em>Note: Only publicly viewable and/or current user logs are listed below.</em></p><br>
-<% i = 0 %>
-<% while i < @trades.length %>
+
   <% @trades.each do |t| %>
     <% if t.viewable == true || t.user_id == current_user.id %>
-      <label><a href='/trades/<%=t.id%>'><%=i+1%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
-      &emsp;<label>Quantity: </label><%= t.quantity %><br>
-      &emsp;<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.buy_value_fiat}" %><br>
-      &emsp;<label>Sell Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.sell_value_fiat}" %><br>
-      &emsp;<label>Net Profit/Loss: </label><%= "#{t.fiat_symbol}#{(t.sell_value_fiat - t.buy_value_fiat) * t.quantity}" %>
-      &emsp;<label>Date: </label><%= t.date %>
-      &emsp;<label>User: </label><a href='/users/<%=User.find_by(id: t.user_id).slug%>'><%= User.find_by(id: t.user_id).username %></a><br><br><br><br>
+      <% i = 0 %>
+      <% while i < @trades.length %>
+        <label><a href='/trades/<%=t.id%>'><%=i+1%></a>. </label><label>Name/Symbol: </label><%= t.coin %><br>
+        &emsp;<label>Quantity: </label><%= t.quantity %><br>
+        &emsp;<label>Buy Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.buy_value_fiat}" %><br>
+        &emsp;<label>Sell Value (Fiat): </label><%= "#{t.fiat_symbol}#{t.sell_value_fiat}" %><br>
+        &emsp;<label>Net Profit/Loss: </label><%= "#{t.fiat_symbol}#{(t.sell_value_fiat - t.buy_value_fiat) * t.quantity}" %>
+        &emsp;<label>Date: </label><%= t.date %>
+        &emsp;<label>User: </label><a href='/users/<%=User.find_by(id: t.user_id).slug%>'><%= User.find_by(id: t.user_id).username %></a><br><br><br><br>
+        <% i += 1 %>
+      <% end %>
     <% end %>
-    <% i += 1 %>
   <% end %>
-<% end %>
