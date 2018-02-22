@@ -1,1 +1,5 @@
-list all users
+<h1>Users Index</h1>
+
+<% User.all.each do |u| %>
+  <li><a href='/users/<%=u.slug%>'><%= u.username %></a><br></li>
+<% end %>
