@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   register Sinatra::Flash
 
+  get '/users' do
+    if logged_in?
+      erb :'/users/index'
+    else
+      flash[:message] = "You must be logged in to view this page."
+      redirect to '/login'
+    end
+  end
+
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     # binding.pry

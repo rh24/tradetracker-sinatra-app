@@ -42,7 +42,8 @@ Models
 - Can you have a three table join?
 UserYearTrade
 
-- In years views, trades are printing twice. Fix this.
+- In years views, trades are printing twice. This was an issue caused by trying to use a while i < @trades.length loop that still printed every viewable trade for the length of the entire @trades array. So, if there were private trades in the array, the viewable ones printed multiple times to compensate for the private ones.
+
 - In years/index view, 2018 is showing up because users/:slug (username: test) still has trades logged in 2018.
 - If user deletes account, all data input by that user must be deleted as well.
 
@@ -51,3 +52,6 @@ UserYearTrade
 - How do I correctly insert checked if for radio buttons and consequently alter the value of @trade.viewable? Adding the checked if made my @trade.viewable static. I could not log the new value if changed from true to false.
 <!-- - *User input must be validated (controller is fine) to ensure that bad data isn't created
 Any validation failures must be shown to user with an error message -->
+
+Future reference -
+How can I update numbering and unique ids? Or is it better practice to never replace unique ids even though records have been deleted?
