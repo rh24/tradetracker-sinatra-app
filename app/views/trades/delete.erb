@@ -12,4 +12,8 @@
   <% UserYear.where(user_id: current_user.id, year_id: Year.find_by(year: @trade.date[0..4].to_i).id).destroy_all %>
 <% end %>
 
+<% if !@all_other_trades_made_in_that_year %>
+  <% Year.where(year: @trade.date[0..4].to_i).destroy_all %>
+<% end %>
+
 <!-- How do I make these buttons side by side? Is the only way to execute these actions by making two separate forms? -->

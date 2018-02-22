@@ -45,7 +45,6 @@ UserYearTrade
 - Do I want to make one show page for users instead of show.erb private_show.erb?
 - In years views, trades are printing twice. This was an issue caused by trying to use a while i < @trades.length loop that still printed every viewable trade for the length of the entire @trades array. So, if there were private trades in the array, the viewable ones printed multiple times to compensate for the private ones.
 
-- In years/index view, 2018 is showing up because users/:slug (username: test) still has trades logged in 2018.
 - If user deletes account, all data input by that user must be deleted as well.
 
 <!-- - Make views for Years. 2017, 2018, etc. -->

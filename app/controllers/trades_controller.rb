@@ -89,7 +89,15 @@ class TradesController < ApplicationController
     user = User.find(current_user.id)
     @trade = Trade.find(params[:id])
 
-    @other_trades_in_that_year = current_user.trades.detect do |t|
+    @other_trades_made_by_user_in_that_year =
+    current_user.trades.detect do |t|
+      if t != @trade
+        t.date == @trade.date[0..4].to_i
+      end
+    end
+
+    @all_other_trades_made_in_that_year =
+    Trade.all.detect do |t|
       if t != @trade
         t.date == @trade.date[0..4].to_i
       end
