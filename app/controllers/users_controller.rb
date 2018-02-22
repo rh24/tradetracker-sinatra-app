@@ -62,10 +62,11 @@ class UsersController < ApplicationController
 
   post '/login' do
     user = User.find_by(username: params[:username])
-    if !!user
+    if !!user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to '/trades'
     else
+      flash[:message] = "Incorrect login information. Please, try again."
       redirect to '/login'
     end
   end

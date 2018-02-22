@@ -2,7 +2,7 @@ require './config/environment'
 
 class ApplicationController < Sinatra::Base
   register Sinatra::Flash
-  
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -26,5 +26,9 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user ||= User.find_by(id: session[:user_id])
     end
+    # 
+    # def authenticate(password)
+    #   password == current_user.password
+    # end
   end
 end
