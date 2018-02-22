@@ -42,8 +42,8 @@ Models
 - Can you have a three table join?
 UserYearTrade
 
-- Make views for Years. 2017, 2018, etc.
+<!-- - Make views for Years. 2017, 2018, etc. -->
 <!-- - Must limit content editing to the user who created that content. -->
 - How do I correctly insert checked if for radio buttons and consequently alter the value of @trade.viewable? Adding the checked if made my @trade.viewable static. I could not log the new value if changed from true to false.
-- *User input must be validated (controller is fine) to ensure that bad data isn't created
-Any validation failures must be shown to user with an error message
+<!-- - *User input must be validated (controller is fine) to ensure that bad data isn't created
+Any validation failures must be shown to user with an error message -->

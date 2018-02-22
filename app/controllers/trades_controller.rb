@@ -14,8 +14,6 @@ class TradesController < ApplicationController
   post '/trades' do
     trade = current_user.trades.build(params)
     # What's the benefit of using user.association.build over Trade.create, then trade.user_id = current_user.id?
-    # trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
-    # useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
     if trade.save
       trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
       useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
@@ -47,13 +45,17 @@ class TradesController < ApplicationController
     else
       @user = User.find(@trade.user_id)
     end
-    if @trade.viewable != true && current_user.id != @trade.user_id
-      flash[:message] = "You do not have access to this information."
-      redirect to '/error'
-    elsif @trade.viewable == true
-      erb :'/trades/show'
-    elsif @trade.viewable == false && current_user.id == @trade.user_id
-      erb :'/trades/show'
+    if logged_in?
+      if @trade.viewable != true && current_user.id != @trade.user_id
+        flash[:message] = "You do not have access to this information."
+        redirect to '/error'
+      elsif @trade.viewable == true
+        erb :'/trades/show'
+      elsif @trade.viewable == false && current_user.id == @trade.user_id
+        erb :'/trades/show'
+      end
+    else
+      redirect to '/login'
     end
   end
 
