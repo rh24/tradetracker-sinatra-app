@@ -12,10 +12,4 @@ class Trade < ActiveRecord::Base
       t if t.date.include?(year.to_s)
     end
   end
-
-  def self.create_years
-    self.all.each do |t|
-      Year.create(year: t.date())
-    end
-  end
 end

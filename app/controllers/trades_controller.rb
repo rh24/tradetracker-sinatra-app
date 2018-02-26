@@ -61,7 +61,7 @@ class TradesController < ApplicationController
 
   get '/trades/:id/edit' do
     @trade = Trade.find_by(id: params[:id])
-    if logged_in? && @trade.user_id == current_user.id
+    if @trade.user_id == current_user.id
       erb :'/trades/edit'
     else
       flash[:message] = "You don't have access to this request."
@@ -71,17 +71,21 @@ class TradesController < ApplicationController
 
   patch '/trades/:id' do
     trade = Trade.find(params[:id])
-    trade.update(coin: params[:coin], quantity: params[:quantity], buy_value_fiat: params[:buy_value_fiat], sell_value_fiat: params[:sell_value_fiat], date: params[:date], viewable: params[:viewable], notes: params[:notes])
-    # RECREATE YEAR AND USERYEAR while deleting old date in trades/edit.erb view
-    # in order to update `Years active: ` in users/private_show.erb
-    trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
-    useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
-
-    if trade.save
-      redirect "/trades/#{trade.id}"
+    if trade.user_id == current_user.id
+      trade.update(coin: params[:coin], quantity: params[:quantity], buy_value_fiat: params[:buy_value_fiat], sell_value_fiat: params[:sell_value_fiat], date: params[:date], viewable: params[:viewable], notes: params[:notes])
+      # RECREATE YEAR AND USERYEAR while deleting old date in trades/edit.erb view
+      # in order to update `Years active: ` in users/private_show.erb
+      trade_year = Year.find_or_create_by(year: params[:date][0..4].to_i)
+      useryear = UserYear.find_or_create_by(user_id: current_user.id, year_id: trade_year.id)
+      if trade.save
+        redirect "/trades/#{trade.id}"
+      else
+        flash[:message] = "Please, fill out fields with valid inputs."
+        redirect "/trades/#{trade.id}/edit"
+      end
     else
-      flash[:message] = "Please, fill out fields with valid inputs."
-      redirect "/trades/#{trade.id}/edit"
+      flash[:message] = "You can't do that!"
+      redirect to '/login'
     end
   end
 
